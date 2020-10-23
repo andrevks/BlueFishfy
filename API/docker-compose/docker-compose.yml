@@ -9,7 +9,7 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - ~/postgreSQL
+      - /home/andre/Documents/Data\ Structure/git-repo/BlueFishfy/API/docker-compose/postgreSQL/
     networks: 
       - postgres-compose-network
 
