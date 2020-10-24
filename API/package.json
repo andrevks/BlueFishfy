@@ -1,7 +1,7 @@
 {
   "name": "API",
   "version": "1.0.0",
-  "description": "",
+  "description": "sudo docker run \\     --name postgres \\     -e POSTGRES_USER=user \\     -e POSTGRES_PASSWORD=password\\     -e POSTGRES_DB =songs \\     -p 5432:5432 \\     -d \\     postgres",
   "main": "webserver.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
