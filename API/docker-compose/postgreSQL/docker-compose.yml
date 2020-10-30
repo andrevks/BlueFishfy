@@ -1,30 +1,36 @@
 version: "3"
 services:
-  teste-postgres-compose:
-    image: postgres
+  postgres-compose:
+    image: postgres:12.4-alpine
+    container_name: postgres
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - "15432:5432"
+      - "5440:5432"
     volumes:
-      - /home/andre/Documents/Data\ Structure/git-repo/BlueFishfy/API/docker-compose/postgreSQL/
+      - postgres-data:/var/lib/postgresql/data 
     networks: 
       - postgres-compose-network
 
-  teste-pgadmin-compose:
+  pgadmin-compose:
     image: dpage/pgadmin4
+    container_name: pgadmin
     environment: 
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL} 
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD} 
     ports: 
-      - "16543:80"
+      - "15432:80"
     depends_on: 
-      - teste-postgres-compose
+      - postgres-compose
     networks: 
       - postgres-compose-network
 
 networks: 
   postgres-compose-network:
     driver: bridge
+
+volumes:
+  postgres-data:
+    external: true
