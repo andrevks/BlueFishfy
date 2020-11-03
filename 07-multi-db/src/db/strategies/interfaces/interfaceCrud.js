@@ -1,7 +1,7 @@
 
 class NotImplementedException extends Error {
     constructor(){
-        super("Not Implemented Exception");
+        super("Exception Not Implemented");
     }
 }
 
@@ -21,7 +21,11 @@ class ICrud {
     delete(id){
         throw new NotImplementedException()
     }
+    isConnected(){
+        throw new NotImplementedException()
+    }
 }
+
 
 //para reutilizar 
 module.exports = ICrud
