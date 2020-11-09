@@ -32,7 +32,6 @@ describe(' Postgres Strategy', function(){
   it("Register", async function(){
     const result = await context.create(MOCK_HEROI_Cadastrar)
     //deepEqual = Exactly equal
-    console.log(result)
     delete result.id
     assert.deepEqual(result, MOCK_HEROI_Cadastrar)
   })

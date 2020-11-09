@@ -6,6 +6,7 @@ class NotImplementedException extends Error {
 }
 
 class ICrud {
+
     create(item){
         throw new NotImplementedException()
 

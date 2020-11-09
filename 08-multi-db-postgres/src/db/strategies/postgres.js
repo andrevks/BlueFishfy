@@ -55,6 +55,7 @@ class Postgres extends ICrud{
             },
             poder: {
                 type: Sequelize.STRING,
+                required:true,
             },
         },
         {
@@ -64,9 +65,9 @@ class Postgres extends ICrud{
             timestamps: false,
         })
         await this._herois.sync()
-
     }
     async connect(){
+
         this._driver = new Sequelize(
             'Heros',
             'andre',

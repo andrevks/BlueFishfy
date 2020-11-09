@@ -14,3 +14,8 @@ docker run \
   --link postgres:13.0-alpine \
   -d\
   adminer
+
+
+sudo docker exec -it mongodb \ 
+mongo --host localhost -u admin -p senhaadmin -- authenticationDatabase admin \ --eval "db.getSiblingDB('herois').createUser({user:'andre', pwd: '123', roles: [{role: 'readWrite', db: 'herois' }]})"
+

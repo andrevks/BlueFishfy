@@ -1,0 +1,39 @@
+#https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3
+version: "3"
+
+services:
+  mongodb-compose:
+    image: mongo:4
+    container_name: mongodb 
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "admin"
+      MONGO_INITDB_ROOT_PASSWORD: "senhaadmin"
+    ports:
+      - "27017:27017"
+    volumes:
+      # means you want to copy init-mongo.js to /docker-entrypoint-initdb.d/ 
+      #as a read only file. /docker-entrypoint-initdb.
+      #- ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - mongodb_data_container:/data/db
+    networks: 
+      - mongodb-compose-network
+
+  mongoclient-compose:
+    image: mongoclient/mongoclient 
+    container_name: mongoclient 
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - mongodb-compose
+    environment: 
+      - STARTUP_DELAY:10
+      - MONGO_URL:"mongodb://root:root@mongo:27017/admin"
+    networks: 
+      - mongodb-compose-network
+
+networks: 
+  mongodb-compose-network:
+    driver: bridge
+
+volumes:
+    mongodb_data_container:
